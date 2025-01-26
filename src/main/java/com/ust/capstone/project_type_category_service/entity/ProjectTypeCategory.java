@@ -25,11 +25,9 @@ public class ProjectTypeCategory {
     @Column(name = "project_type_category_name")  
     private String projectTypeCategoryName;
 
+    @Column(name = "project_variation_id")  
+    private Long projectVarId;
+
     @Column(name = "project_id")  
     private Long projectId;
-
-    @Column(name = "project_id1")  
-    private Long projectId1;
-
-   
 }
