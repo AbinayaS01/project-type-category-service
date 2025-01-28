@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/project-type-categories")
+@RequestMapping("/api")
 public class ProjectTypeCategoryController {
 
     private final ProjectTypeCategoryService projectTypeCategoryService;
@@ -23,14 +23,14 @@ public class ProjectTypeCategoryController {
 
     // Fetch all project type categories
    
-    @GetMapping
+    @GetMapping("/project-type-categories")
     public List<ProjectTypeCategory> getAllProjectTypeCategories() {
         return projectTypeCategoryService.getAllProjectTypeCategories();
     }
 
     // Fetch a specific project type category by ID
     
-    @GetMapping("/{id}")
+    @GetMapping("/project-type-categories/{id}")
     public ResponseEntity<ProjectTypeCategory> getProjectTypeCategoryById(@PathVariable Long id) {
         Optional<ProjectTypeCategory> projectTypeCategory = projectTypeCategoryService.getProjectTypeCategoryById(id);
         return projectTypeCategory.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
@@ -38,7 +38,7 @@ public class ProjectTypeCategoryController {
 
     // Create a new project type category
     
-    @PostMapping
+    @PostMapping("/project-type-categories")
     public ResponseEntity<ProjectTypeCategory> createProjectTypeCategory(@RequestBody ProjectTypeCategory projectTypeCategory) {
         ProjectTypeCategory createdProjectTypeCategory = projectTypeCategoryService.createProjectTypeCategory(projectTypeCategory);
         return new ResponseEntity<>(createdProjectTypeCategory, HttpStatus.CREATED);
@@ -46,7 +46,7 @@ public class ProjectTypeCategoryController {
 
     // Update a project type category
     
-    @PutMapping("/{id}")
+    @PutMapping("/project-type-categories/{id}")
     public ResponseEntity<ProjectTypeCategory> updateProjectTypeCategory(@PathVariable Long id, @RequestBody ProjectTypeCategory projectTypeCategory) {
         ProjectTypeCategory updatedProjectTypeCategory = projectTypeCategoryService.updateProjectTypeCategory(id, projectTypeCategory);
         return updatedProjectTypeCategory != null ? ResponseEntity.ok(updatedProjectTypeCategory) : ResponseEntity.notFound().build();
@@ -54,7 +54,7 @@ public class ProjectTypeCategoryController {
 
     // Delete a project type category by ID
     
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/project-type-categories/{id}")
     public ResponseEntity<Void> deleteProjectTypeCategory(@PathVariable Long id) {
         boolean isDeleted = projectTypeCategoryService.deleteProjectTypeCategory(id);
         return isDeleted ? ResponseEntity.noContent().build() : ResponseEntity.notFound().build();
