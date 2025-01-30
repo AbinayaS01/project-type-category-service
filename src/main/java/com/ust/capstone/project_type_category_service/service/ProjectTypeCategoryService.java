@@ -30,7 +30,7 @@ public class ProjectTypeCategoryService {
 
     // Create a new project type category
     public ProjectTypeCategory createProjectTypeCategory(ProjectTypeCategory projectTypeCategory) {
-        return projectTypeCategoryRepository.save(projectTypeCategory);
+        return projectTypeCategoryRepository.saveAndFlush(projectTypeCategory);
     }
 
     // Update a project type category
